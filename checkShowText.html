@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/check.css" >
+    <title>勾选复选框显示对应文字</title>
+</head>
+<body>
+    <div class="check-page">
+        <div class="check-box">
+            <input type="checkbox" value="上海" />上海<br>
+            <input type="checkbox" value="西宁" />西宁<br>
+            <input type="checkbox" value="广州" />广州<br>
+        </div>
+        <div class="check-text">
+
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var checkboxList = [...document.querySelectorAll('.check-box input')]
+        var innerTextArr = []
+        checkboxList.forEach(function(item) {
+            item.onchange = function (){
+                if (item.checked) {
+                    if (!innerTextArr.includes(innerTextArr)) {
+                        innerTextArr.push(item.value)
+                        document.querySelector('.check-text').innerHTML += item.value
+                        // for (var i = 0;i < innerTextArr.length;i++) {
+                        //     document.querySelector('.check-text').innerHTML += innerTextArr[i]
+                        // }
+                    }
+                    
+                    // document.querySelector('.check-text').innerHTML += item.value + '<br>' 
+                } else {
+                    // document.querySelector('.check-text').innerHTML -= (item.value + '<br>')
+
+                }
+            }
+        })
+    }
+    
+</script>
+</html>

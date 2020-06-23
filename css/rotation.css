@@ -1,0 +1,27 @@
+.page-container {
+    width: 100%;
+}
+.rotation-container {
+    /* border: 1px solid red; */
+    width: 100%;
+}
+.rotation-img {
+    display: block;
+    width: 60%;
+    height: 500px;
+    margin: 10px auto;
+}
+.rotation-left-btn {
+    position: absolute;
+    left: 20%;
+    cursor: pointer;
+}
+
+.rotation-right-btn {
+    position: absolute;
+    left: 80%;
+    cursor: pointer;
+}
+li {
+    text-decoration: none;
+}

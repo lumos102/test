@@ -1,0 +1,13 @@
+.check-page {
+    /* width: 100%; */
+}
+.check-box {
+    float: left;
+    width: 50%;
+    background: red;
+}
+.check-text {
+    float: left;
+    width: 50%;
+    background: green;
+}

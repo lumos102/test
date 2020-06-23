@@ -1,0 +1,77 @@
+<!-- 轮播图 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/rotation.css" />
+    <title>轮播图</title>
+</head>
+<body>
+    <div class="page-container">
+        <div class="rotation-container">
+            <ul id="rotation-img-list">
+                <li class="rotation-img-item">
+                    <img src='imgs/1.png' class="rotation-img" />
+                </li>
+                <li class="rotation-img-item">
+                    <img src='imgs/2.png' class="rotation-img" />
+                </li>
+                <li class="rotation-img-item">
+                    <img src='imgs/3.png' class="rotation-img" />
+                </li>
+                <li class="rotation-img-item">
+                    <img src='imgs/4.png' class="rotation-img" />
+                </li>
+            </ul>
+            <button onClick="toPre()" class="rotation-left-btn">左</button>
+            <button onClick="toNext()" class="rotation-right-btn">右</button>
+            <div></div>
+        </div>
+    </div>
+</body>
+<script>
+    var timer
+    // 图片初始索引
+    var n = 0
+    var imgList = [...document.querySelectorAll('#rotation-img-list li')]
+    window.onload = function () {
+        timer = setInterval(function() {
+            this.changeImg()
+            imgList[n].style.display = 'block'
+            n = n >= imgList.length - 1 ? 0 : ++n
+        }, 1000)
+    }
+
+    function changeImg() {
+        for (var i = 0;i < imgList.length; i++) {
+            imgList[i].style.display = 'none'
+        }
+        imgList[n].style.display = 'block'
+    }
+
+    function initImg () {
+        var imgList = [
+         'imgs/1.png',
+         'imgs/2.png',
+         'imgs/3.png',
+         'imgs/4.png'
+        ]
+        document.querySelector('.rotation-img').src = imgList[0]
+    }
+
+    function toPre() {
+        clearInterval(timer)
+        n = n <= 0 ? imgList.length - 1 : --n
+        changeImg()
+    }
+
+    function toNext () {
+        clearInterval(timer)
+        n = n >= imgList.length - 1 ? 0 : ++n
+        changeImg()
+    }
+
+
+</script>
+</html>
