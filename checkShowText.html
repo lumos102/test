@@ -19,27 +19,32 @@
     </div>
 </body>
 <script>
+    // 右侧要显示的城市列表组合
+    var innerTextArr = []
+
     window.onload = function () {
         var checkboxList = [...document.querySelectorAll('.check-box input')]
-        var innerTextArr = []
         checkboxList.forEach(function(item) {
             item.onchange = function (){
                 if (item.checked) {
-                    if (!innerTextArr.includes(innerTextArr)) {
+                    if (!innerTextArr.includes(item.value)) {
                         innerTextArr.push(item.value)
-                        document.querySelector('.check-text').innerHTML += item.value
-                        // for (var i = 0;i < innerTextArr.length;i++) {
-                        //     document.querySelector('.check-text').innerHTML += innerTextArr[i]
-                        // }
+                        showTextInfo()
                     }
-                    
-                    // document.querySelector('.check-text').innerHTML += item.value + '<br>' 
                 } else {
-                    // document.querySelector('.check-text').innerHTML -= (item.value + '<br>')
-
+                    innerTextArr.splice(innerTextArr.indexOf(item.value), 1)
+                    showTextInfo()
                 }
             }
         })
+    }
+
+    // 添加或删除时重新写入文本
+    function showTextInfo () {
+        document.querySelector('.check-text').innerHTML = ''
+        for (var i = 0;i < innerTextArr.length;i++) {
+            document.querySelector('.check-text').innerHTML += innerTextArr[i]
+        }
     }
     
 </script>
