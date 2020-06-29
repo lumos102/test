@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='css/tag.css' >
+    <title>标签库</title>
+</head>
+<body>
+    <div class='tag-page'>
+        <div class="tag-checked">
+
+        </div>
+        <div class="tag-all" onclick="toggleBtn()">
+
+        </div>
+    </div>
+</body>
+<script>
+    var alllist = ['java教程', 'SEM', '关键词', '创意', '排名', '网络营销', '电商', '博客', '网站分析']
+    var tagAllElement = document.getElementsByClassName('tag-all')[0]
+    var tagCheckElement = document.getElementsByClassName('tag-checked')[0]
+
+    window.onload = function () {
+        initBtn()
+    }
+
+    function initBtn () {
+        for (var i = 0;i < alllist.length; i++) {
+            var btn = document.createElement('button')
+            btn.innerHTML = alllist[i]
+            tagAllElement.appendChild(btn)
+        }
+    }
+    
+    function toggleBtn(e) {
+        var e = e || window.event
+        var target = e.target || e.srcElement
+        target.classList.toggle('btn-active')
+        if (target.classList.contains('btn-active')) {
+            var btn = document.createElement('button')
+            btn.innerHTML = target.innerHTML
+            tagCheckElement.append(btn)
+        } else {
+            var removeBtnElement
+            for (var i = 0; i < tagCheckElement.querySelectorAll('button').length;i++) {
+                if (tagCheckElement.querySelectorAll('button')[i].innerHTML == target.innerHTML) {
+                    removeBtnElement = tagCheckElement.querySelectorAll('button')[i]
+                }
+            }
+            tagCheckElement.removeChild(removeBtnElement)
+        }
+    }
+    
+
+</script>
+</html>
