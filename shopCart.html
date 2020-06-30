@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/shopCart.css" >
     <title>简易购物车</title>
 </head>
 <body>
-    
+    <div class="shop-page">
+        <ul class="shop-list"></ul>
+    </div>
 </body>
+<script>
+    var shopList = [
+        {name: '戒指', price: 15000, num: 0, id:1},
+        {name: '神仙水', price: 15000, num: 0, id:2},
+        {name: '项链', price: 15000, num: 0, id:3},
+        {name: '香水', price: 15000, num: 0, id:4}
+    ]
+
+    window.onload = function () {
+        initList()
+    }
+
+    function initList() {
+        var str = ''
+        for (var i = 0;i < shopList.length;i++) {
+            str += `
+            <li class="shop-item">
+                <div class="product-info">
+                    <div>${shopList[i].name}</div>
+                    <div>￥${shopList[i].price}</div>
+                </div>
+                <div class="ope-btn">
+                    <button data-downId=${shopList[i].id}>-</button>
+                    ${shopList[i].num}
+                    <button data-upId=${shopList[i].id}>+</button>
+                </div>
+            </li>`
+        }
+        document.getElementsByClassName('shop-list')[0].innerHTML = str
+    }
+</script>
 </html>
