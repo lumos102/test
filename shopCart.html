@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="shop-page">
-        <ul class="shop-list"></ul>
+        <ul class="shop-list" onclick=changeNum()></ul>
     </div>
 </body>
 <script>
@@ -40,6 +40,22 @@
             </li>`
         }
         document.getElementsByClassName('shop-list')[0].innerHTML = str
+    }
+
+    function changeNum (e) {
+        var e = e || window.event
+        var target = e.target || e.srcElement
+        isUp = target.getAttribute('data-upId') ? true : false
+        if (isUp) {
+            shopList.filter(item => item.id == target.getAttribute('data-upId'))[0].num++
+            initList()
+        } else {
+            var curNum = shopList.filter(item => item.id == target.getAttribute('data-downId'))[0].num
+            if (curNum > 0) {
+                shopList.filter(item => item.id == target.getAttribute('data-downId'))[0].num--
+                initList()
+            }
+        }
     }
 </script>
 </html>
