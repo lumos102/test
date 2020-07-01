@@ -10,6 +10,7 @@
     <div class="shop-page">
         <ul class="shop-list" onclick=changeNum()></ul>
     </div>
+    <div class="shop-total"></div>
 </body>
 <script>
     var shopList = [
@@ -56,6 +57,19 @@
                 initList()
             }
         }
+        calculateTotal()
+    }
+
+    function calculateTotal () {
+        var num = 0
+        var price = 0
+        var text = ''
+        for (var i = 0; i < shopList.length;i++) {
+            num += shopList[i].num
+            price += shopList[i].price * shopList[i].num
+        }
+        text = `已选：${num}份，￥${price}元`
+        document.querySelectorAll('.shop-total')[0].innerHTML = text
     }
 </script>
 </html>
