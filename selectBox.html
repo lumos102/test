@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/select.css" >
+    <title>下拉列表</title>
+</head>
+<body>
+    <div class="select-page">
+        <input name="inputBox" value='' id="select-box" />
+        <ul class="option-list"></ul>
+    </div>
+</body>
+<script>
+    var optionList = [
+        { id: '1', value: '001' },
+        { id: '2', value: '002' },
+        { id: '3', value: '003' },
+        { id: '4', value: '004' }
+    ]
+    var index = -1
+    var ulElement = document.querySelectorAll('.option-list')[0]
+    var inputElement = document.getElementById('select-box')
+
+    window.onload = function () {
+        var str = ''
+        for (var i = 0;i < optionList.length;i++) {
+            str += `
+            <li data-id=${optionList[i].id} data-value=${optionList[i].value} class="option-item">
+                ${optionList[i].value}
+            </li>`
+        }
+        ulElement.innerHTML = str
+    }
+
+    inputElement.onfocus = function() {
+        ulElement.style.display = 'block'
+    }
+
+    ulElement.onclick = function(e) {
+        var e = e || window.event
+        var target = e.target || e.srcElement
+        inputElement.value = target.getAttribute('data-value')
+        ulElement.style.display = 'none'
+    }
+
+    // 上38 下40 左37 右39
+    document.onkeydown = function(e) {
+        if (e.keyCode == 38 && index < optionList.length) {
+            if (index == -1 || index == 0) {
+                index = 0
+                setActive(index)
+                return
+            }
+            index = --index
+            setActive(index)
+        } else if (e.keyCode == 40) {
+            console.log(index)
+            if (index == optionList.length-1) {
+                index = 0
+                setActive(index)
+                return
+            }
+            index = ++index
+            setActive(index)
+        }
+    }
+
+    function setActive (index) {
+        for (var i = 0; i < optionList.length;i++) {
+            document.getElementsByClassName('option-item')[i].style.background = 'white'  
+        }
+        document.getElementsByClassName('option-item')[index].style.background = 'pink'        
+    }
+</script>
+</html>

@@ -1,0 +1,21 @@
+.select-page {
+
+}
+
+.select-box {
+
+}
+
+.option-list {
+    padding: 0;
+    margin: 0;
+    width: 174px;
+    display: none;
+}
+
+.option-item {
+    list-style: none;
+}
+.option-item:hover {
+    background: pink;
+}
